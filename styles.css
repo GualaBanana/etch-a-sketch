@@ -14,7 +14,12 @@ body {
 
 }
 
-.canvas {
+#user-interface {
+  display: flex;
+  flex-direction: column;
+}
+
+#canvas {
   width: 600px;
   height: 600px;
   
