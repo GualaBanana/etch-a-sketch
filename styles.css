@@ -1,6 +1,17 @@
 body {
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
   background-color: beige;
+}
+
+#workspace {
+  display: flex;
+
 }
 
 .canvas {
@@ -19,3 +30,6 @@ body {
 .grid {
 
 }
+
+/* Implement a small window that will show up when the slider being moved with
+the square that will reflect the size of the resolution set by the moving slider */

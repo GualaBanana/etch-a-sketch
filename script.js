@@ -9,23 +9,25 @@ class Canvas {
   }
 
   fill() {
-    for (let i = 0; i < this.size ** 2; i++) {
+    for (let i = 0; i < 100 ** 2; i++) {
       const cell = new Cell(this.backgroundColor);
       this.canvas.appendChild(cell);
     }
   }
-  // It removes previous cells, later need to think about implementin it efficiently, just appending new cells (if it's better).
   clear() {
-    this.canvas.innerHTML = ""  // Deletes all the children of the canvas.
-    this.fill();
+    // Instead of reseting cells from here consider defining reset() in Cell class.
+    const cells = this.canvas.children;
+    for (let cell of cells) {
+      cell.style.background = this.backgroundColor;
+    }
   }
 
   changeSize(value) {
     this.size = value;
     this.canvas.style.cssText = `grid-template: repeat(${this.size}, 1fr)/repeat(${this.size}, 1fr);`;
     this.clear(); 
-    this.fill();
   }
+
   // Rainbow mode toggle will be checked here and if it's on, cell will be changed to different collor each time, without changig `Canvas.painColor`.
   paint(e) {
     e.target.style.background = Canvas.paintColor;
@@ -50,4 +52,7 @@ class Cell {
   }
 }
 
+// Define GUI class that is composed with the canvas on which this GUI operates (likely in another file).
 const canvas = new Canvas(document.querySelector(".canvas"));
+const canvasResSlider = document.querySelector("input[name='canvas-res']");
+canvasResSlider.addEventListener("change", (e) => canvas.changeSize(e.target.value));
