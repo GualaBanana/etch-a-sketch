@@ -1,5 +1,6 @@
 body {
   height: 100vh;
+  background-color: beige;
 }
 
 .canvas {
@@ -10,6 +11,11 @@ body {
   grid-template: repeat(16, 1fr)/repeat(16, 1fr);
 }
 
+.cell {
+
+}
+
+/* For making the grid visible and other customization I come up with */
 .grid {
-  
+
 }
