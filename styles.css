@@ -6,17 +6,37 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background-color: beige;
+  background-color: #ffc7fe;
+}
+
+button,
+input {
+  border-color: #f7ffbf;
+  padding: 0;
 }
 
 #workspace {
   display: flex;
-
 }
 
 #user-interface {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#color-picker {
+  display: flex;
+  justify-content: space-between;
+}
+
+#color-swapper {
+  cursor: pointer;
+  rotate: 90deg;
+  font-weight: bold;
+  scale: 1.5;
+
+  display: inline-flex;
 }
 
 #canvas {
@@ -25,6 +45,9 @@ body {
   
   display: grid;
   grid-template: repeat(16, 1fr)/repeat(16, 1fr);
+
+  border: 18px solid #f7ffbf;
+  border-radius: 18px;
 }
 
 .cell {
