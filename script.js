@@ -4,6 +4,7 @@ class Canvas {
     this.size = 16;
     this.backgroundColor = "hsl(179, 100%, 90%)";  //#d2fcef  #bdfffe  #b0ffe7
     this.paintColor = "black";
+    this.rainbowMode = false;
     this.fill();
   }
   // Figure out how to create one object and append it iteratively or
@@ -43,7 +44,7 @@ class Cell {
   constructor(canvas) {
     this.cell = document.createElement("div");
     this.cell.classList.add("cell");
-    this.cell.addEventListener("mouseover", () => this.cell.style.background = canvas.paintColor);
+    this.cell.addEventListener("mouseover", (e) => canvas.paint(e));
     this.cell.style.background = canvas.backgroundColor;
     return this.cell;
   }
