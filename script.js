@@ -71,3 +71,7 @@ colorSwapper.addEventListener("click", () => {
 });
 const clearButton = document.querySelector("button#clear");
 clearButton.addEventListener("click", () => canvas.clear());
+const eraserButton = document.getElementById("eraser");
+eraserButton.addEventListener("click", () => canvas.brushMode = "eraser");
+const rainbowButton = document.getElementById("rainbow");
+rainbowButton.addEventListener("click", () => canvas.brushMode = "rainbow");
