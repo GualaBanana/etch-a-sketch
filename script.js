@@ -3,36 +3,49 @@ class Canvas {
     this.canvas = element;
     this.size = 16;
     this.backgroundColor = "hsl(179, 100%, 90%)";  //#d2fcef  #bdfffe  #b0ffe7
-    this.paintColor = "black";
-    this.rainbowMode = false;
+    this.canvas.style.backgroundColor = this.backgroundColor;
     this.fill();
+
+    this.brushMode = "default";
+    this.paintColor = "black";
   }
-  // Figure out how to create one object and append it iteratively or
-  // separately create cells and then iterate through them and modify them as needed in another step. (probably will change performance hit)
+
   fill() {
     for (let i = 0; i < 100 ** 2; i++) {
-      const cell = new Cell(this);
-      this.canvas.appendChild(cell);
+      const pixel = document.createElement("div");
+      this.canvas.appendChild(pixel);
+    }
+    this.canvas.querySelectorAll("div").forEach(pixel => pixel.addEventListener("mouseover", (e) => canvas.alterPixelColor(e.target)));
+  }
+
+  alterPixelColor(pixel) {
+    switch(this.brushMode) {
+      case "default":
+        pixel.style.background = this.paintColor;
+        return;
+      case "eraser":
+        this.erase(pixel);
+        return;
+      case "rainbow":
+        pixel.style.background = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` ;
+        return;
     }
   }
 
   clear() {
-    // Instead of reseting cells from here consider defining reset() in Cell class.
-    const cells = this.canvas.children;
-    for (let cell of cells) {
-      cell.style.background = this.backgroundColor;
+    for (let pixel of this.canvas.children) {
+      this.erase(pixel);
     }
+  }
+  
+  erase(pixel) {
+    pixel.removeAttribute("style");
   }
 
   changeSize(value) {
     this.size = value;
-    this.canvas.style.cssText = `grid-template: repeat(${this.size}, 1fr)/repeat(${this.size}, 1fr);`;
+    this.canvas.style.gridTemplate = `repeat(${this.size}, 1fr)/repeat(${this.size}, 1fr)`;
     this.clear(); 
-  }
-
-  // Rainbow mode toggle will be checked here and if it's on, cell will be changed to different collor each time, without changig `Canvas.painColor`.
-  paint(e) {
-    e.target.style.background = this.paintColor;
   }
 
   toggleGrid() {
@@ -40,18 +53,6 @@ class Canvas {
   }
 }
 
-class Cell {
-  constructor(canvas) {
-    this.cell = document.createElement("div");
-    this.cell.classList.add("cell");
-    this.cell.addEventListener("mouseover", (e) => canvas.paint(e));
-    this.cell.style.background = canvas.backgroundColor;
-    return this.cell;
-  }
-}
-
-// Resolve the issue with unreseting input forms after page refresh.
-// Define GUI class that is composed with the canvas on which this GUI operates (likely in another file).
 const canvas = new Canvas(document.querySelector("#canvas"));
 
 const canvasResSlider = document.querySelector("input[name='canvas-res']");
