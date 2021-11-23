@@ -2,8 +2,7 @@ class Canvas {
   constructor(element) {
     this.canvas = element;
     this.size = 16;
-    this.backgroundColor = "hsl(179, 100%, 90%)";  //#d2fcef  #bdfffe  #b0ffe7
-    this.canvas.style.backgroundColor = this.backgroundColor;
+    this.canvas.style.backgroundColor = "hsl(179, 100%, 90%)";
     this.fill();
 
     this.brushMode = "default";
@@ -57,6 +56,8 @@ const canvas = new Canvas(document.querySelector("#canvas"));
 
 const canvasResSlider = document.querySelector("input[name='canvas-res']");
 canvasResSlider.addEventListener("change", (e) => canvas.changeSize(e.target.value));
+const canvasBackgroundContrast = document.querySelector("input[name='background-contrast");
+canvasBackgroundContrast.addEventListener("input", (e) => canvas.canvas.style.backgroundColor = `hsl(179, 100%, ${e.target.value}%)`);
 const mainColorPicker = document.querySelector(".color-picker__main-color");
 mainColorPicker.addEventListener("change", (e) => canvas.paintColor = e.target.value);
 mainColorPicker.addEventListener("load", () => mainColorPicker.value = "black");

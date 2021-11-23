@@ -18,10 +18,12 @@ body {
 
   background-clip: text;
   color: #f7ffbf;
-  font-size: 120px;  
+  font-size: 120px;
+  text-shadow: 5px 2px black;
 }
 
 #site-logo .back {
+  visibility: hidden;
   font-size: 121px;
   color: black;
 }
