@@ -3,7 +3,7 @@ class Canvas {
     this.canvas = element;
     this.size = 16;
     this.backgroundColor = "hsl(179, 100%, 90%)";  //#d2fcef  #bdfffe  #b0ffe7
-    this.canvas.style.background = this.backgroundColor;
+    this.canvas.style.backgroundColor = this.backgroundColor;
     this.paintColor = "black";
     this.rainbowMode = false;
     this.fill();
@@ -19,13 +19,14 @@ class Canvas {
 
   clear() {
     for (let cell of this.canvas.children) {
-      cell.reset();
+      cell.removeAttribute("style");
     }
   }
 
   changeSize(value) {
     this.size = value;
-    this.canvas.style.cssText = `grid-template: repeat(${this.size}, 1fr)/repeat(${this.size}, 1fr);`;
+    this.canvas.style.gridTemplate = `repeat(${this.size}, 1fr)/repeat(${this.size}, 1fr)`;
+    // this.canvas.style.gridTemplateRows = `repeat(${this.size}, 1fr)`;
     this.clear(); 
   }
 
@@ -46,10 +47,6 @@ class Cell {
     this.cell.addEventListener("mouseover", (e) => canvas.paint(e));
     return this.cell;
   }
-
-  reset() {
-    this.cell.removeAttribute("style");
-  } 
 }
 
 // Resolve the issue with unreseting input forms after page refresh.
