@@ -3,6 +3,7 @@ class Canvas {
     this.canvas = element;
     this.size = 16;
     this.backgroundColor = "hsl(179, 100%, 90%)";  //#d2fcef  #bdfffe  #b0ffe7
+    this.canvas.style.background = this.backgroundColor;
     this.paintColor = "black";
     this.rainbowMode = false;
     this.fill();
@@ -17,10 +18,8 @@ class Canvas {
   }
 
   clear() {
-    // Instead of reseting cells from here consider defining reset() in Cell class.
-    const cells = this.canvas.children;
-    for (let cell of cells) {
-      cell.style.background = this.backgroundColor;
+    for (let cell of this.canvas.children) {
+      cell.reset();
     }
   }
 
@@ -45,9 +44,12 @@ class Cell {
     this.cell = document.createElement("div");
     this.cell.classList.add("cell");
     this.cell.addEventListener("mouseover", (e) => canvas.paint(e));
-    this.cell.style.background = canvas.backgroundColor;
     return this.cell;
   }
+
+  reset() {
+    this.cell.removeAttribute("style");
+  } 
 }
 
 // Resolve the issue with unreseting input forms after page refresh.

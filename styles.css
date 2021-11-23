@@ -16,17 +16,14 @@ body {
 #site-logo .front {
   position: absolute;
 
-    /* background: linear-gradient(175deg, #f7ffbf 55%, #CCFFFE); */
   background-clip: text;
   color: #f7ffbf;
   font-size: 120px;  
 }
 
 #site-logo .back {
-  background: black;
-  background-clip: text;
   font-size: 121px;
-  color: rgba(0, 0, 0, 0);
+  color: black;
 }
 
 button,
@@ -70,9 +67,14 @@ input {
   border-radius: 18px;
 }
 
-.cell {
-
+#canvas > * {
+  background-color: transparent;
 }
+/*
+.cell {
+  background-color: transparent;
+}
+*/
 
 /* For making the grid visible and other customization I come up with */
 .grid {
