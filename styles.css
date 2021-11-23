@@ -67,15 +67,6 @@ input {
   border-radius: 18px;
 }
 
-#canvas > * {
-  background-color: transparent;
-}
-/*
-.cell {
-  background-color: transparent;
-}
-*/
-
 /* For making the grid visible and other customization I come up with */
 .grid {
 
